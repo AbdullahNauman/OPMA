@@ -17,15 +17,22 @@ Possible Indicators of Pain:
 Source: Cowen et al. 2015
 Figure 1.0
 ```
-
-
+## Setting up our data
 
 Using a set patient data for each of these variables, principal component analysis (PCA) can be used to complete feature extraction and determine which variables are most effective. Furthermore, reducing our data to a lower dimension will allow us to develop a more accurate model for prediction, with a decreased chance of overfitting, and allow for an easier clinical application. 
-We begin with a matrix *X* where each row represents a single patient's data and each column represents a single variable. To prevent biased skewing of the data, as the variables are measured in different units, we must normalize the data to a mean of *0* and a variance of *1* by recursively applying the formula **x’=  x - xcolumn minimumxcolumn maximum - xcolumn minimum** to each data point in the existing matrix *X* to form a standardized matrix *X'*.  This standardized matrix *X'* is composed of z-scores that allows us to compare values across different variables. 
+We begin with a matrix $X$ where each row represents a single patient's data and each column represents a single variable. To prevent biased skewing of the data, as the variables are measured in different units, we must normalize the data to a mean of $0$ and a variance of $1$ by recursively applying the formula 
+$$ 
+x' = \frac{x-x_{column \, minimum}}{x_{column \, maximum} -x_{column \, minimum}} 
+$$
+to each data point in the existing matrix $X$ to form a standardized matrix $X'$.  This standardized matrix $X'$ is composed of z-scores that allows us to compare values across different variables. 
 
-As our variables are interdependent, we can better examine this relationship by applying the formula **cov(xij’) = k =1n(xik,- i)  (xjk,- j)n - 1** to each element of *X'* in order to form its covariance matrix. This symmetric matrix describes the variance of the data and the covariance among individual variables,  the measure of how two variables change with respect to each other. The covariance is positive when variables show similar behavior and negative otherwise. PCA attempts to form a Gaussian linear regression through two variables that determines whether two variables change together or if there is a third variables affecting both.
+As our variables are inter-dependent, we can better examine this relationship by applying the formula
+ $$
+ cov(x_y’) = \frac{\sum_{k=1}^{n} (x_{ik}' - \mu_j) \, \cdotp (x_{jk}' - \mu_j)}{n-1}  
+ $$ 
+ to each element of *X'* in order to form its covariance matrix. This symmetric matrix describes the variance of the data and the covariance among individual variables,  the measure of how two variables change with respect to each other. The covariance is positive when variables show similar behavior and negative otherwise. PCA attempts to form a Gaussian linear regression through two variables that determines whether two variables change together or if there is a third variables affecting both.
 
-Finally, PCA orthogonally transforms the original data onto a direction that reduces the dimension and maximizes variance. The procedure allows us to maintain the model’s accuracy and further explore these interdependencies (See Figure 1.1). The orgathonal transformation is accomplished by performing eigen decomposition on our covariance matrix. Given the resultant eigenvalues, we can rank the data from lowest to highest. As the lowest values bare the least information about the distribution of the data, they can be rejected as less reliable indicators of pain. The elements with higher eigenvalues that demonstrate a larger variance across our randomized set of pain and non-pain patients will then be selected as better indicators of pain.
+Finally, PCA orthogonally transforms the original data onto a direction that reduces the dimension and maximizes variance. The procedure allows us to maintain the model’s accuracy and further explore these interdependencies (See Figure 1.1). The orthogonal transformation is accomplished by performing eigen decomposition on our covariance matrix. Given the resultant eigenvalues, we can rank the data from lowest to highest. As the lowest values bare the least information about the distribution of the data, they can be rejected as less reliable indicators of pain. The elements with higher eigenvalues that demonstrate a larger variance across our randomized set of pain and non-pain patients will then be selected as better indicators of pain.
 
 ![PCA dimensionality reduction from ℝn to ℝ2 based on variance.](http://www.nlpca.org/fig_pca_principal_component_analysis.png)
 
