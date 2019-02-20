@@ -72,11 +72,11 @@ Figure 2.3: A graphical representation of gradient descent using the average cos
 By repeatedly shifting the values for Wand b in the direction of greatest descent, we train the algorithm to find the optimal function *f(x) = Wx+b* that best minimizes the cost function and trains the algorithm to accurately predict a measure of pain based on human responses we identified using the PCA. 
 
 By repeatedly applying this re-adjustment model we define a prediction model in the form: 
-![pain equation](/equations/pain_equation.jpg) ,
+![pain equation](/Equations/pain_equation.jpg) ,
 
 where x represents the collected patient data and Wrepresents the calibrated weight for each of the selected patient variables. 
 In order to standardize this data to our expected values between 0-10 , we can configure the final layer of the neural network to model a composition between P(x)and a transformed sigmoid function (x) =101+e-x10-5which has the range 0<(x) <10for all values of x >0. 
 Therefore: 
-![pain model](/equations/pain_model.jpg)
+![pain model](/Equations/pain_model.jpg)
 
 This technology will provide an objective measurement of pain that can be calculated using fewer patient variables and is more accurate than the existing system of pain measurement scales.
