@@ -48,7 +48,7 @@ where *w* represents the weight, *b* represents the bias, and *x* represents the
 The values of *w* and b are set to an initial value and adjusted as the model trains on a set of patient data. The pain levels in this data are assigned by a single physician to maintain relative consistency. The neural network then uses a cost function to self adjust the values of *w* and *b* in order to optimize the prediction model. 
 
 
-![Neural network diagram](https://cdn-images-1.medium.com/max/1600/1*v88ySSMr7JLaIBjwr4chTw.jpeg)
+![Neural network diagram](https://www.dtreg.com/uploaded/pageimg/MLFNwithWeights.jpg)
 
 Figure 1.2: A graphical representation of a neural network. The *x* values represent the human variables selected by the PCA and *y* represents the patient's predicted pain level. 
 
