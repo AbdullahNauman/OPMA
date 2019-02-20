@@ -66,6 +66,8 @@ where y<sub>i</sub> represents the output on the *i-th* trial and *n* represents
 
 To determine the minimum value for *C'(y)*, we simply need to shift our current random values for **W** and **b** in the direction of greatest descent or *-∇C'(y)*(See Figure 2.3), where *∇C'* is a vector valued function composed of the partial derivatives of *C'(y)* with respect to all elements of **y** - the independent variables selected by the Principal Component Analysis. 
 
+![average cost equation](https://www.researchgate.net/profile/Joao_Bimbo/publication/324412506/figure/fig7/AS:613869529616394@1523369309428/shows-an-example-of-a-function-with-two-variables-f-R-2-R-stated-in-Equation-224.png)
+
 
 Figure 2.3: A graphical representation of gradient descent using the average cost function in ℝ<sup>3</sup>. The blue represents the minimum. By shifting the weights and biases for our human variables in the direction of the minimum, we can minimize the difference between the predicted and expected pain value. This allows our model to train to a point where it accurately and objectively quantifies a patient's pain levels. 
 
