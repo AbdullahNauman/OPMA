@@ -1,4 +1,5 @@
-# OPMA: It's a new way to measure pain. 
+![OPMA: It's a new way to measure pain. ](OPMA banner.jpg)
+# 
 
 The Objective Pain Measurement Algorithm, or OPMA, uses data science techniques and machine learning to identify which human physiological responses are most indicative of pain and uses them to develop a neural network that can accurately quantify pateint pain levels. 
 
