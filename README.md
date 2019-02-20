@@ -22,12 +22,12 @@ Figure 1.0
 Using a set patient data for each of these variables, principal component analysis (PCA) can be used to complete feature extraction and determine which variables are most effective. Furthermore, reducing our data to a lower dimension will allow us to develop a more accurate model for prediction, with a decreased chance of overfitting, and allow for an easier clinical application. 
 We begin with a matrix $X$ where each row represents a single patient's data and each column represents a single variable. To prevent biased skewing of the data, as the variables are measured in different units, we must normalize the data to a mean of $0$ and a variance of $1$ by recursively applying the formula 
 
-![Normalizing equation](/equations/normalize.jpg)
+![Normalizing equation](/Equations/normalize.jpg)
 
 to each data point in the existing matrix $X$ to form a standardized matrix $X'$.  This standardized matrix $X'$ is composed of z-scores that allows us to compare values across different variables. 
 
 As our variables are inter-dependent, we can better examine this relationship by applying the formula
-![Covariance equation](/equations/covariance_equation.jpg)
+![Covariance equation](/Equations/covariance_equation.jpg)
 
 to each element of *X'* in order to form its covariance matrix. This symmetric matrix describes the variance of the data and the covariance among individual variables,  the measure of how two variables change with respect to each other. The covariance is positive when variables show similar behavior and negative otherwise. PCA attempts to form a Gaussian linear regression through two variables that determines whether two variables change together or if there is a third variables affecting both.
 
@@ -45,7 +45,7 @@ The values of W and b are set to an initial value and adjusted as the model trai
 Figure 2.2: A graphical representation of a neural network.17 The x values represent the human variables selected by the PCA and yrepresents the patient's predicted pain level. 
 
 
-The training process consists of running several trials and compares the model’s results to the expected output using a cost function. This cost function is defined as ![cost function](/equations/cost_function.jpg) , where *y* represents the output of a given node in the final layer, and yexpected represents the expected output present in the training dataset. The cost function tells us how close we are to accurately predicting pain. In order to get an accurate representation of how far off we are from accurately modeling the data we can take the average cost function as ![average cost equation](/equations/avg_cost_functions.jpg) where y<sub>i</sub> represents the output on the i-th trial and n represents the total number of trials. We can define yn as composed of all outputs yi for trials n. To develop an optimal model for predicting levels of pain, we want to find the minimum value for the function *C'(y)* of several variables. 
+The training process consists of running several trials and compares the model’s results to the expected output using a cost function. This cost function is defined as ![cost function](/Equations/cost_function.jpg) , where *y* represents the output of a given node in the final layer, and yexpected represents the expected output present in the training dataset. The cost function tells us how close we are to accurately predicting pain. In order to get an accurate representation of how far off we are from accurately modeling the data we can take the average cost function as ![average cost equation](/Equations/avg_cost_functions.jpg) where y<sub>i</sub> represents the output on the i-th trial and n represents the total number of trials. We can define yn as composed of all outputs yi for trials n. To develop an optimal model for predicting levels of pain, we want to find the minimum value for the function *C'(y)* of several variables. 
 To determine the minimum value for C'(y), we simply need to shift our current random values for Wand b in the direction of greatest descent or -∇C'(y)(See Figure 2.2), where ∇C' is a vector valued function composed of the partial derivatives of C'(y) with respect to all elements of y - the independent variables selected by the Principal Component Analysis. 
 
 
