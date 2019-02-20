@@ -24,16 +24,12 @@ We begin with a matrix $X$ where each row represents a single patient's data and
 
 ![Normalizing equation](/equations/normalize.jpg)
 
-$$ 
-x' = \frac{x-x_{column \, minimum}}{x_{column \, maximum} -x_{column \, minimum}} 
-$$
 to each data point in the existing matrix $X$ to form a standardized matrix $X'$.  This standardized matrix $X'$ is composed of z-scores that allows us to compare values across different variables. 
 
 As our variables are inter-dependent, we can better examine this relationship by applying the formula
- $$
- cov(x_y’) = \frac{\sum_{k=1}^{n} (x_{ik}' - \mu_j) \, \cdotp (x_{jk}' - \mu_j)}{n-1}  
- $$ 
- to each element of *X'* in order to form its covariance matrix. This symmetric matrix describes the variance of the data and the covariance among individual variables,  the measure of how two variables change with respect to each other. The covariance is positive when variables show similar behavior and negative otherwise. PCA attempts to form a Gaussian linear regression through two variables that determines whether two variables change together or if there is a third variables affecting both.
+![Covariance equation](/equations/covariance_equation.jpg)
+
+to each element of *X'* in order to form its covariance matrix. This symmetric matrix describes the variance of the data and the covariance among individual variables,  the measure of how two variables change with respect to each other. The covariance is positive when variables show similar behavior and negative otherwise. PCA attempts to form a Gaussian linear regression through two variables that determines whether two variables change together or if there is a third variables affecting both.
 
 Finally, PCA orthogonally transforms the original data onto a direction that reduces the dimension and maximizes variance. The procedure allows us to maintain the model’s accuracy and further explore these interdependencies (See Figure 1.1). The orthogonal transformation is accomplished by performing eigen decomposition on our covariance matrix. Given the resultant eigenvalues, we can rank the data from lowest to highest. As the lowest values bare the least information about the distribution of the data, they can be rejected as less reliable indicators of pain. The elements with higher eigenvalues that demonstrate a larger variance across our randomized set of pain and non-pain patients will then be selected as better indicators of pain.
 
@@ -49,7 +45,7 @@ The values of W and b are set to an initial value and adjusted as the model trai
 Figure 2.2: A graphical representation of a neural network.17 The x values represent the human variables selected by the PCA and yrepresents the patient's predicted pain level. 
 
 
-The training process consists of running several trials and compares the model’s results to the expected output using a cost function. This cost function is defined as C (y) = (y - yexpected)2 , where y represents the output of a given node in the final layer, and yexpected represents the expected output present in the training dataset. The cost function tells us how close we are to accurately predicting pain. In order to get an accurate representation of how far off we are from accurately modeling the data we can take the average cost function as C' (y) =1n i = 1n C(yi) where yi represents the output on the i-th trial and n represents the total number of trials. We can define yn as composed of all outputs yi for trials n. To develop an optimal model for predicting levels of pain, we want to find the minimum value for the function C'(y)of several variables. 
+The training process consists of running several trials and compares the model’s results to the expected output using a cost function. This cost function is defined as ![cost function](/equations/cost_function.jpg) , where *y* represents the output of a given node in the final layer, and yexpected represents the expected output present in the training dataset. The cost function tells us how close we are to accurately predicting pain. In order to get an accurate representation of how far off we are from accurately modeling the data we can take the average cost function as ![average cost equation](/equations/avg_cost_functions.jpg) where y<sub>i</sub> represents the output on the i-th trial and n represents the total number of trials. We can define yn as composed of all outputs yi for trials n. To develop an optimal model for predicting levels of pain, we want to find the minimum value for the function *C'(y)* of several variables. 
 To determine the minimum value for C'(y), we simply need to shift our current random values for Wand b in the direction of greatest descent or -∇C'(y)(See Figure 2.2), where ∇C' is a vector valued function composed of the partial derivatives of C'(y) with respect to all elements of y - the independent variables selected by the Principal Component Analysis. 
 
 
@@ -62,5 +58,6 @@ By repeatedly applying this re-adjustment model we define a prediction model in 
 where x represents the collected patient data and Wrepresents the calibrated weight for each of the selected patient variables. 
 In order to standardize this data to our expected values between 0-10 , we can configure the final layer of the neural network to model a composition between P(x)and a transformed sigmoid function (x) =101+e-x10-5which has the range 0<(x) <10for all values of x >0. 
 Therefore: 
-Pain Level =  (x) P(x) =  (w0 x0 +w1 x1+... + wn-1  xn-1 + b)
+![pain equation](/equations/pain_equation.jpg)
+
 This technology will provide an objective measurement of pain that can be calculated using fewer patient variables and is more accurate than the existing system of pain measurement scales.
