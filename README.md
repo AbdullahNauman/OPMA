@@ -21,6 +21,9 @@ Figure 1.0
 
 Using a set patient data for each of these variables, principal component analysis (PCA) can be used to complete feature extraction and determine which variables are most effective. Furthermore, reducing our data to a lower dimension will allow us to develop a more accurate model for prediction, with a decreased chance of overfitting, and allow for an easier clinical application. 
 We begin with a matrix $X$ where each row represents a single patient's data and each column represents a single variable. To prevent biased skewing of the data, as the variables are measured in different units, we must normalize the data to a mean of $0$ and a variance of $1$ by recursively applying the formula 
+
+![Normalizing equation](http://mathurl.com/render.cgi?%5Cinlinemode%20x%27%20%3D%20%5Cfrac%7Bx-x_%7Bcolumn%20%5C%2C%20minimum%7D%7D%7Bx_%7Bcolumn%20%5C%2C%20maximum%7D%20-x_%7Bcolumn%20%5C%2C%20minimum%7D%7D%20%0A%5Cnocache)
+
 $$ 
 x' = \frac{x-x_{column \, minimum}}{x_{column \, maximum} -x_{column \, minimum}} 
 $$
