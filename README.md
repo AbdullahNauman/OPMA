@@ -40,21 +40,29 @@ Finally, PCA orthogonally transforms the original data onto a direction that red
 Figure 2.1: PCA dimensionality reduction from ℝ<sup>n</sup> to ℝ<sup>2</sup> based on variance.
 
 In order to objectively quantify pain, we can develop a multilayered neural network comprised of nodes. In the first layer, each node is connected to selected indicators of pain chosen by the PCA. The node takes in the input of the chosen variables and computes an output using a function
-![f(x) = Wx + b](/Equations/linear_model.jpg) ,
-where *W* represents the weight, *b* represents the bias, and *x* represents the input. The sum of these outputs quantitatively predicts the individual’s pain level.
 
-The values of *W* and b are set to an initial value and adjusted as the model trains on a set of patient data. The pain levels in this data are assigned by a single physician to maintain relative consistency. The neural network then uses a cost function to self adjust the values of *W* and *b* in order to optimize the prediction model. 
+![f(x) = Wx + b](/Equations/linear_model.jpg) ,
+
+where *w* represents the weight, *b* represents the bias, and *x* represents the input. The sum of these outputs quantitatively predicts the individual’s pain level.
+
+The values of *w* and b are set to an initial value and adjusted as the model trains on a set of patient data. The pain levels in this data are assigned by a single physician to maintain relative consistency. The neural network then uses a cost function to self adjust the values of *w* and *b* in order to optimize the prediction model. 
 
 
 ![Neural network diagram](https://cdn-images-1.medium.com/max/1600/1*v88ySSMr7JLaIBjwr4chTw.jpeg)
+
 Figure 2.2: A graphical representation of a neural network. The *x* values represent the human variables selected by the PCA and *y* represents the patient's predicted pain level. 
 
 
 The training process consists of running several trials and compares the model’s results to the expected output using a cost function. This cost function is defined as
+
 ![cost function](/Equations/cost_function.jpg) , 
+
 where *y* represents the output of a given node in the final layer, and yexpected represents the expected output present in the training dataset. The cost function tells us how close we are to accurately predicting pain. In order to get an accurate representation of how far off we are from accurately modeling the data we can take the average cost function as
+
 ![average cost equation](/Equations/avg_cost_functions.jpg) ,
+
 where y<sub>i</sub> represents the output on the i-th trial and n represents the total number of trials. We can define yn as composed of all outputs yi for trials n. To develop an optimal model for predicting levels of pain, we want to find the minimum value for the function *C'(y)* of several variables. 
+
 To determine the minimum value for C'(y), we simply need to shift our current random values for Wand b in the direction of greatest descent or -∇C'(y)(See Figure 2.3), where ∇C' is a vector valued function composed of the partial derivatives of C'(y) with respect to all elements of y - the independent variables selected by the Principal Component Analysis. 
 
 
